@@ -1,0 +1,150 @@
+{
+  "data_note": "GENUINELY REAL 16S data (PRJNA1145097). n=50 is small -- pilot results.",
+  "classes": [
+    "Control",
+    "Endometriosis"
+  ],
+  "n_samples": 129,
+  "class_counts": {
+    "Endometriosis": 67,
+    "Control": 62
+  },
+  "bias_mitigation": {
+    "class_weight": "balanced (applied to models that support it -- reweights minority-class errors instead of resampling)",
+    "decision_threshold_default": 0.5,
+    "decision_threshold_tuned": 0.4986,
+    "threshold_chosen_from": "training-set out-of-fold predictions only (test set untouched)"
+  },
+  "best_model": {
+    "name": "ExtraTrees",
+    "tuned_params": {
+      "clf__max_depth": 8,
+      "clf__n_estimators": 400,
+      "select__k": 6
+    },
+    "tuned_cv_f1": 0.6452,
+    "screen_cv_f1": 0.6317,
+    "overfit_gap": 0.1294
+  },
+  "test_metrics_at_0.5": {
+    "accuracy": 0.6154,
+    "balanced_accuracy": 0.6131,
+    "f1": 0.6429
+  },
+  "test_metrics_at_tuned_threshold": {
+    "accuracy": 0.6154,
+    "balanced_accuracy": 0.6131,
+    "f1": 0.6429
+  },
+  "roc_auc_random_split": 0.679,
+  "leave_one_study_out": {
+    "PRJNA1145097": {
+      "n_test": 50,
+      "auc": 0.564,
+      "balanced_accuracy": 0.565
+    },
+    "PRJNA424567": {
+      "n_test": 79,
+      "auc": 0.474,
+      "balanced_accuracy": 0.4
+    },
+    "mean_cross_study_auc": 0.519
+  },
+  "generalization_note": "Cite leave_one_study_out (cross-cohort) as the honest generalization metric. roc_auc_random_split can be inflated by batch effects shared across a random train/test split when multiple studies are pooled.",
+  "per_class_report": {
+    "Control": {
+      "precision": 0.5833333333333334,
+      "recall": 0.5833333333333334,
+      "f1-score": 0.5833333333333334,
+      "support": 12.0
+    },
+    "Endometriosis": {
+      "precision": 0.6428571428571429,
+      "recall": 0.6428571428571429,
+      "f1-score": 0.6428571428571429,
+      "support": 14.0
+    },
+    "accuracy": 0.6153846153846154,
+    "macro avg": {
+      "precision": 0.6130952380952381,
+      "recall": 0.6130952380952381,
+      "f1-score": 0.6130952380952381,
+      "support": 26.0
+    },
+    "weighted avg": {
+      "precision": 0.6153846153846154,
+      "recall": 0.6153846153846154,
+      "f1-score": 0.6153846153846154,
+      "support": 26.0
+    }
+  },
+  "taxa_highest_in": {
+    "Firmicutes": "Endometriosis",
+    "Bacteroidetes": "Endometriosis",
+    "Proteobacteria": "Endometriosis",
+    "Actinobacteriota": "Control",
+    "Desulfobacterota": "Control",
+    "Bacteroides": "Endometriosis",
+    "Lactobacillus": "Endometriosis",
+    "Faecalibacterium": "Control",
+    "Bifidobacterium": "Control",
+    "Prevotella": "Endometriosis",
+    "Ruminococcus": "Endometriosis",
+    "Akkermansia": "Control",
+    "Escherichia_coli": "Endometriosis",
+    "Collinsella": "Control",
+    "Roseburia": "Control",
+    "Blautia": "Control",
+    "Alistipes": "Control",
+    "Parabacteroides": "Endometriosis",
+    "Desulfovibrio": "Control",
+    "Sutterella": "Endometriosis",
+    "beta_glucuronidase": "Endometriosis"
+  },
+  "explainability": {
+    "shap": {
+      "ran": true,
+      "method": "KernelExplainer on the full pipeline (model-agnostic)",
+      "mean_abs_shap_by_taxon": {
+        "Collinsella": 0.057182,
+        "Desulfobacterota": 0.0481,
+        "Actinobacteriota": 0.025994,
+        "Bacteroidetes": 0.025789,
+        "Parabacteroides": 0.01621,
+        "Bifidobacterium": 0.008054,
+        "Firmicutes": 0.003518,
+        "Alistipes": 1e-05,
+        "Blautia": 8e-06,
+        "Prevotella": 7e-06,
+        "Sutterella": 5e-06,
+        "Lactobacillus": 4e-06,
+        "Akkermansia": 4e-06,
+        "Roseburia": 3e-06,
+        "Desulfovibrio": 3e-06,
+        "Escherichia_coli": 2e-06,
+        "beta_glucuronidase": 2e-06,
+        "Ruminococcus": 2e-06,
+        "Bacteroides": 1e-06,
+        "Faecalibacterium": 0.0,
+        "Proteobacteria": 0.0
+      },
+      "files": [
+        "shap_summary_beeswarm.png",
+        "shap_summary_bar.png",
+        "shap_waterfall_example.png",
+        "shap_mean_abs_importance.csv"
+      ]
+    },
+    "lime": {
+      "ran": true,
+      "examples_saved": [
+        "endometriosis_example",
+        "control_example"
+      ],
+      "files": [
+        "lime_endometriosis_example.html / lime_endometriosis_example.png",
+        "lime_control_example.html / lime_control_example.png"
+      ]
+    }
+  }
+}

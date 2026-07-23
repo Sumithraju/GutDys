@@ -1,0 +1,10 @@
+taxon,literature_expected_highest_in,model_found_highest_in,matches_literature,evidence_confidence,refs
+Escherichia_coli,Endometriosis,Endometriosis,True,strong,Endobiota2019;HROpen2025
+Proteobacteria,Endometriosis,Endometriosis,True,moderate,HROpen2025
+Collinsella,Endometriosis,Control,False,weak,inflammation-literature
+Desulfovibrio,Endometriosis,Control,False,weak,H2S-barrier-literature
+Prevotella,Control,Endometriosis,False,moderate,Endobiota2019
+Lactobacillus,Control,Endometriosis,False,moderate,Endobiota2019;HROpen2025
+Faecalibacterium,Control,Control,True,moderate,SCFA-literature
+Roseburia,Control,Control,True,weak,butyrate-literature
+Bifidobacterium,Control,Control,True,weak,general

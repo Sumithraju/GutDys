@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS / editor cruft
+.DS_Store
+*.swp
+
+# backups produced by the processing scripts
+*.bak
+*.prev_broken.bak
+
+# large / regenerable binaries (models are rebuilt by the pipeline)
+*.joblib
+
+# raw sequence + QIIME2 artifacts (too large / not source)
+dataset/**/fastq/
+*.qza
+*.qzv
+*.biom
+
+# stray build artifacts
+*.pages
+*.pdf.pages

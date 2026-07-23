@@ -1,0 +1,16 @@
+numpy
+pandas
+scikit-learn
+scipy
+matplotlib
+seaborn
+joblib
+
+# needed for both pipelines' SHAP/LIME explainability step
+shap
+lime
+
+# optional: adds XGBoost to the pcos_pipeline.py/endometriosis_pipeline.py
+# model zoo. Both pipelines run fine without it -- it just won't appear on
+# the leaderboard.
+xgboost

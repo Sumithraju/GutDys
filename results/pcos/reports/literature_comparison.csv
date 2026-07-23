@@ -1,0 +1,14 @@
+taxon,literature_expected_highest_in,model_found_highest_in,matches_literature,evidence_confidence,refs
+Proteobacteria,PCOS,PCOS,True,strong,RepSci2024;Zhang2017
+Escherichia_coli,PCOS,PCOS,True,strong,MR2023;Zhang2017
+Bacteroides,PCOS,PCOS,True,moderate,MR2023;Zhang2017
+Parabacteroides,PCOS,PCOS,True,moderate,MR2023;Zhang2017
+Blautia,PCOS,PCOS,True,weak,Zhang2017
+Collinsella,PCOS,Control,False,weak,Zhang2017
+Desulfovibrio,PCOS,Control,False,weak,general-dysbiosis
+Lactobacillus,Control,PCOS,False,moderate,Zhang2017
+Akkermansia,Control,Control,True,moderate,Zhang2017
+Faecalibacterium,Control,PCOS,False,moderate,SCFA-literature
+Bifidobacterium,Control,Control,True,weak,general
+Roseburia,Control,PCOS,False,weak,butyrate-literature
+shannon_diversity,Control,Control,True,contested,Lindheim2017;Zhang2017;RepSci2024

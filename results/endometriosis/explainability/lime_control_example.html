@@ -37089,25 +37089,25 @@
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_divUTDA0D9SBRSSNER"></div>
+        <div class="lime top_div" id="top_divV92BQSMQJNOU8JE"></div>
         
         <script>
-        var top_div = d3.select('#top_divUTDA0D9SBRSSNER').classed('lime top_div', true);
+        var top_div = d3.select('#top_divV92BQSMQJNOU8JE').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["Control", "Endometriosis"], [0.6455248149003914, 0.354475185099608]);
+            var pp = new lime.PredictProba(pp_svg, ["Control", "Endometriosis"], [0.514713560254144, 0.4852864397458561]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["Control", "Endometriosis"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["Collinsella > 0.47", -0.11794634582896091], ["Desulfobacterota <= 0.00", 0.07614948842058478], ["Actinobacteriota > 12.02", -0.07591975547020148], ["Parabacteroides <= 0.00", -0.04469745160481334], ["Bacteroidetes <= 0.68", 0.005751728658703899], ["Proteobacteria <= 0.54", -0.004418957265186717], ["Blautia > 5.02", -0.003833777500758409], ["Escherichia_coli <= 0.00", 0.0020668957065364413], ["Akkermansia <= 0.00", 0.0020560752378328264], ["0.00 < Lactobacillus <= 0.79", -0.0018798021196720519]], 1, exp_div);
+                exp.show([["Collinsella > 0.06", -0.0789562441681485], ["Desulfobacterota <= 0.00", 0.03973866886360946], ["Desulfovibrio <= 0.00", 0.0306835222039519], ["Ruminococcus > 3.46", -0.024009176501173103], ["Actinobacteriota > 12.93", -0.019634175336111538], ["Sutterella <= 0.00", 0.016955245121315576], ["Blautia > 4.76", -0.015910620517529152], ["0.07 < Faecalibacterium <= 0.73", 0.013273493837732025], ["Akkermansia <= 0.00", 0.011534484262444914], ["Roseburia <= 0.00", 0.009991828480831078]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["Collinsella", "13.46", -0.11794634582896091], ["Desulfobacterota", "0.00", 0.07614948842058478], ["Actinobacteriota", "21.99", -0.07591975547020148], ["Parabacteroides", "0.00", -0.04469745160481334], ["Bacteroidetes", "0.55", 0.005751728658703899], ["Proteobacteria", "0.05", -0.004418957265186717], ["Blautia", "7.41", -0.003833777500758409], ["Escherichia_coli", "0.00", 0.0020668957065364413], ["Akkermansia", "0.00", 0.0020560752378328264], ["Lactobacillus", "0.18", -0.0018798021196720519]], 1, raw_div);
+            exp.show_raw_tabular([["Collinsella", "13.46", -0.0789562441681485], ["Desulfobacterota", "0.00", 0.03973866886360946], ["Desulfovibrio", "0.00", 0.0306835222039519], ["Ruminococcus", "3.80", -0.024009176501173103], ["Actinobacteriota", "21.99", -0.019634175336111538], ["Sutterella", "0.00", 0.016955245121315576], ["Blautia", "7.41", -0.015910620517529152], ["Faecalibacterium", "0.14", 0.013273493837732025], ["Akkermansia", "0.00", 0.011534484262444914], ["Roseburia", "0.00", 0.009991828480831078]], 1, raw_div);
         
         </script>
         </body></html>

@@ -510,24 +510,46 @@ def get_models() -> dict:
     }
 
 
+# --- decision-threshold policy (controls the sensitivity/specificity trade) --#
+#   "youden"      : balances sensitivity & specificity (default, neutral)
+#   "f2"          : maximises F2 (recall weighted 2x precision) -> higher sensitivity
+#   "sensitivity" : lowest cutoff that still reaches TARGET_SENSITIVITY on the
+#                   training out-of-fold predictions -> tune how many cases you catch
+# Lowering the threshold ALWAYS raises sensitivity and lowers specificity; it
+# moves along the ROC curve, it does NOT increase AUC. Chosen on training
+# out-of-fold predictions only, so it is never leakage.
+THRESHOLD_MODE = "youden"
+TARGET_SENSITIVITY = 0.85
+
+
 def find_best_threshold(y_true, probs) -> float:
     """
-    Return the decision threshold maximizing Youden's J (= sensitivity +
-    specificity - 1) on training-set out-of-fold predictions.
-
-    WHY NOT positive-class F1 (the previous approach): maximizing F1 on the
-    Endometriosis class alone rewards predicting almost everyone positive, so on
-    weakly-separable data it collapsed to threshold ~0.0 -- a degenerate
-    all-positive classifier with ~0 specificity that reported a misleadingly
-    high F1 (0.70) while balanced accuracy stayed at chance. Youden's J weighs
-    BOTH classes, so it cannot be gamed that way and yields an honest operating
-    point. Only ever computed on training out-of-fold predictions -- the test
-    set never influences it, so a non-0.5 threshold is not leakage.
+    Pick the decision threshold on training out-of-fold predictions according to
+    THRESHOLD_MODE. The test set never influences it, so a non-0.5 cutoff is not
+    leakage. See THRESHOLD_MODE notes above for the sensitivity trade-off.
     """
-    from sklearn.metrics import roc_curve
+    from sklearn.metrics import roc_curve, fbeta_score
+    if THRESHOLD_MODE == "sensitivity":
+        # highest threshold that still achieves >= TARGET_SENSITIVITY (keeps the
+        # best possible specificity for that sensitivity floor)
+        fpr, tpr, thr = roc_curve(y_true, probs)
+        ok = np.where(tpr >= TARGET_SENSITIVITY)[0]
+        if len(ok):
+            t = float(thr[ok[0]])          # roc_curve thresholds are descending
+            return t if np.isfinite(t) else 0.5
+        return 0.5
+    if THRESHOLD_MODE == "f2":
+        # sweep every candidate cutoff, keep the one with the best F2 (favours recall)
+        best_t, best_f = 0.5, -1.0
+        for t in np.unique(probs):
+            pred = (probs >= t).astype(int)
+            f = fbeta_score(y_true, pred, beta=2, zero_division=0)
+            if f > best_f:
+                best_f, best_t = f, float(t)
+        return best_t
+    # default: Youden's J (balanced)
     fpr, tpr, thr = roc_curve(y_true, probs)
-    j = tpr - fpr
-    best_i = int(np.argmax(j))
+    best_i = int(np.argmax(tpr - fpr))
     t = float(thr[best_i])
     return t if np.isfinite(t) else 0.5   # roc_curve's first thr can be +inf
 
